@@ -1,14 +1,19 @@
 import argparse
 import logging
-
+from rich.logging import RichHandler
+from rich.traceback import install
 from audiobook_generator.config.general_config import GeneralConfig
 from audiobook_generator.core.audiobook_generator import AudiobookGenerator
 from audiobook_generator.tts_providers.base_tts_provider import get_supported_tts_providers
+
+install()
+
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
+    handlers=[RichHandler()]
 )
 logger = logging.getLogger(__name__)
 
